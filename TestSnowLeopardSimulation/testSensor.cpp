@@ -265,11 +265,11 @@ TEST_CASE("Sensors") {
         sc.set_inoutvector(1);
         std::ofstream CapturesNotRef;
         std::ofstream &Captures = CapturesNotRef;
-        double m_detector = sc.get_rhs_gradient();
-        double g_detector = sc.get_rhs_angle();
-        double c_detector = sc.get_rhs_intercept();
-        double vert = sc.get_rhs_vert();
-        double horz = sc.get_rhs_horz();
+        double m_detector = sc.get_lhs_gradient();
+        double g_detector = sc.get_lhs_angle();
+        double c_detector = sc.get_lhs_intercept();
+        double vert = sc.get_lhs_vert();
+        double horz = sc.get_lhs_horz();
         sc.SensorEdgeAndMovement(1,0.5,//double location_x_animal, double location_y_animal,
                                  -1,0.5,//            double previous_x_animal, double previous_y_animal,
                                  1,   //        int Individual_ID,
@@ -434,6 +434,76 @@ TEST_CASE("Sensors") {
         std::ofstream CapturesNotRef;
         std::ofstream &Captures = CapturesNotRef;
         sc.CapturesIntersection(2, 1, -1, -2,  1,  M_PI_4,  1, Captures,1);
+        CHECK(sc.get_capture_count()==3);
+    }
+    
+    SECTION("CapturesIntersection - vertical movement") {
+        INFO("Captures Intersection - angle3") // Only appears on a FAIL
+        sc.set_radius(1);
+        sc.set_location_x(0); sc.set_location_y(0);
+        sc.set_angle_direction(M_PI_2); sc.set_angle_halfwidth(M_PI_2);
+        sc.calculate_sensoredges();
+        sc.set_inoutvector(1);
+        sc.set_capture_count(0);
+        std::ofstream CapturesNotRef;
+        std::ofstream &Captures = CapturesNotRef;
+        sc.CapturesIntersection(1, 2, 1, -2,  1,  0,  1, Captures,1);
         CHECK(sc.get_capture_count()==2);
+    }
+    
+    SECTION("CapturesIntersection - horizontal movement") {
+        INFO("Captures Intersection - angle4") // Only appears on a FAIL
+        sc.set_radius(1);
+        sc.set_location_x(0); sc.set_location_y(0);
+        sc.set_angle_direction(M_PI_2); sc.set_angle_halfwidth(M_PI_2);
+        sc.calculate_sensoredges();
+        sc.set_inoutvector(1);
+        sc.set_capture_count(0);
+        std::ofstream CapturesNotRef;
+        std::ofstream &Captures = CapturesNotRef;
+        sc.CapturesIntersection(2, 0, -2, 0,  1,  M_PI_2,  1, Captures,1);
+        CHECK(sc.get_capture_count()==3);
+    }
+    
+    SECTION("CapturesIntersection - Angle missing camera horz") {
+        INFO("Captures Intersection - angle5") // Only appears on a FAIL
+        sc.set_radius(1);
+        sc.set_location_x(0); sc.set_location_y(0);
+        sc.set_angle_direction(M_PI_2); sc.set_angle_halfwidth(M_PI_2);
+        sc.calculate_sensoredges();
+        sc.set_inoutvector(1);
+        sc.set_capture_count(0);
+        std::ofstream CapturesNotRef;
+        std::ofstream &Captures = CapturesNotRef;
+        sc.CapturesIntersection(2, 3, -2, 3,  1,  M_PI_2,  1, Captures,1);
+        CHECK(sc.get_capture_count()==0);
+    }
+    
+    SECTION("CapturesIntersection - Angle missing camera vert") {
+        INFO("Captures Intersection - angle5") // Only appears on a FAIL
+        sc.set_radius(1);
+        sc.set_location_x(0); sc.set_location_y(0);
+        sc.set_angle_direction(M_PI_2); sc.set_angle_halfwidth(M_PI_2);
+        sc.calculate_sensoredges();
+        sc.set_inoutvector(1);
+        sc.set_capture_count(0);
+        std::ofstream CapturesNotRef;
+        std::ofstream &Captures = CapturesNotRef;
+        sc.CapturesIntersection(3, 2, 3, -2,  1,  0,  1, Captures,1);
+        CHECK(sc.get_capture_count()==0);
+    }
+    
+    SECTION("CapturesIntersection - Angle missing camera angle") {
+        INFO("Captures Intersection - angle5") // Only appears on a FAIL
+        sc.set_radius(1);
+        sc.set_location_x(0); sc.set_location_y(0);
+        sc.set_angle_direction(M_PI_2); sc.set_angle_halfwidth(M_PI_2);
+        sc.calculate_sensoredges();
+        sc.set_inoutvector(1);
+        sc.set_capture_count(0);
+        std::ofstream CapturesNotRef;
+        std::ofstream &Captures = CapturesNotRef;
+        sc.CapturesIntersection(4, 8, 0, 4,  1,  0,  1, Captures,1);
+        CHECK(sc.get_capture_count()==0);
     }
 }

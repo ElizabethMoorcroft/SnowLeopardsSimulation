@@ -18,7 +18,35 @@
 #include <vector>
 #include <string>
 
-
+Animal::Animal(){};
+Animal::Animal(int AnimalId,int Iteration,int SaveMovement,
+               // movement setups
+               double CentreHome_r,double MaximumDistance,
+               double no_of_move_states,std::vector<double> probability,std::vector<std::vector<double>> mean_vector,std::vector<std::vector<double>> variance_vector,
+               double x, double y, double a, double seed
+               ){
+    set_AnimalId(AnimalId);
+    set_MaximumDistance(MaximumDistance);
+    
+    set_Current_x(x);
+    set_Current_y(y);
+    
+    
+    set_no_of_move_states(no_of_move_states);
+    set_probability(probability);
+    set_mean_vector(mean_vector);
+    set_variance_vector(variance_vector);
+    
+    set_CentreHome_x(x);
+    set_CentreHome_y(y);
+    set_CentreHome_r(CentreHome_r);
+    
+    int s = PickState (seed, no_of_move_states,  probability);
+    set_Current_state(s);
+    
+    step_number =0;
+    Total_distance=0;
+};
 
 void Animal::LocationVector(double previous_x, double previous_y, int LeaveEntreCode, int End, std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures,  int checkcapture){
     
@@ -36,20 +64,19 @@ void Animal::LocationVector(double previous_x, double previous_y, int LeaveEntre
             "," << LeaveEntreCode << //8th column, row "stepcounter"
             "," << Current_distance << //8th column, row "stepcounter"
             "," << Iteration <<                  // itertaion number
+            "," << Current_state << 
             "\n";
     };
     
-   /* if(checkcapture==1){
-        CheckSensor(Current_x, Current_y, Current_angle,
-                    previous_x, previous_y,
-                    AllSensors,
-                    Movement,
-                    Captures,
-                    step_number,
-                    AnimalId,
-                    Iteration);
-    };
-  */
+    Sensor sc;
+    sc.CapturesIntersection(Current_x, Current_y,   // Current locations
+                         previous_x, previous_y,   // Previous locations
+                         AnimalId,                                    // Animal ID
+                         Current_angle,                                    // Call direction & width
+                         Iteration,                                         // Iteration number
+                         Captures,
+                         step_number);
+
 };
 
 void  Animal::UpdateLocation (double seed, std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures){
@@ -62,6 +89,7 @@ void  Animal::UpdateLocation (double seed, std::ofstream &Movement, std::vector<
     //  -> To start a new stream of RandNum for the probability of changing states in 2 state corr walk (MoveType==2)
     std::vector<double> seed_stream=ThreeSeeds(seed);
     
+    std::cout<<"seed " <<seed <<" seed_stream " <<seed_stream[0]<<std::endl;
     NewLocation(seed_stream[0]);
     
     LocationVector(previousx, previousy, 0,1, Movement, AllSensors , Captures ,1);

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>696ED9FA-B350-4D1B-98A4-A943ACDEB022</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SnowLeopardsSimulation</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>82DE27B3C95C70B5571C0A6F3C8DD1E939B7D476</key>
+		<string>https://github.com/ElizabethMoorcroft/SnowLeopardsSimulation.git</string>
+		<key>86F386F6CAF4DDAB88ED2A9212F23D9367A11E3E</key>
+		<string>https://github.com/ElizabethMoorcroft/Test2.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SnowLeopardsSimulation.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>82DE27B3C95C70B5571C0A6F3C8DD1E939B7D476</key>
+		<string>../..</string>
+		<key>86F386F6CAF4DDAB88ED2A9212F23D9367A11E3E</key>
+		<string>../../../Bats/Test2</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ElizabethMoorcroft/SnowLeopardsSimulation.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>82DE27B3C95C70B5571C0A6F3C8DD1E939B7D476</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>82DE27B3C95C70B5571C0A6F3C8DD1E939B7D476</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SnowLeopardsSimulation</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>86F386F6CAF4DDAB88ED2A9212F23D9367A11E3E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Test2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

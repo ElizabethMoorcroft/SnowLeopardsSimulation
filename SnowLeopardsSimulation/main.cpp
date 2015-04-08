@@ -9,24 +9,33 @@
 #include <iostream>
 #include <random>
 #include "Animal.h"
+#include "Sensor.h"
+#include "World.h"
+
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
-    Animal RandomNumber1;
-    int state = RandomNumber1.PickState(1, 2, {0,1});
-    RandomNumber1.set_CentreHome_x(0);RandomNumber1.set_CentreHome_y(0);RandomNumber1.set_CentreHome_r(10000000);
-    RandomNumber1.set_Current_x(0);RandomNumber1.set_Current_y(0);RandomNumber1.set_Current_state(0);
-    RandomNumber1.set_MaximumDistance(15000);
-    for(int j=0; j<20; j++){
-        //std::cout   << "j: "<< j <<std::endl;
-        RandomNumber1.NewLocation(j, 2, {0.5,0.5},{{1,0},{10,M_PI}},{{0.1,0,0,0.01},{1,0,0,0.1}});
-        std::cout   << "j: "<< j
-                    <<", state-"<<RandomNumber1.get_Current_state()
-                    <<" location (" <<RandomNumber1.get_Current_x()<<","<<RandomNumber1.get_Current_y()<<")"
-                    <<std::endl;
-        
-    }
+    
+    World sc;
+    sc.MultipleIterations(100, //No cameras
+                          1, //No iterations
+                          "/Users/student/Documents/xx",
+                          1000, //space between camera
+                          {M_PI}, // camera width
+                          {10}, //camera radius
+                          10, //No steps
+                           1, //Save Movement
+                           20000, //radius
+                          15000, //Max distance moved
+                           2,//No states
+                            {0.5,0.5}, // prob
+                           {{0.5,1},{0.75,2}}, //mean
+                          {{0.5,0,0,2},{0.5,0,0,2}}, ///variance
+                          5 // No of animals
+                          );
+
+    
     
     //std::cout << "state" <<state <<std::endl;
     //std::cout << "returnedvector (" <<returnedvector[0]<<","<<returnedvector[1]<<")"<<std::endl;

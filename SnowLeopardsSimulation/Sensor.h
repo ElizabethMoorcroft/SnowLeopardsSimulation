@@ -57,6 +57,9 @@ private:
     
 public:
     
+    Sensor();
+    Sensor(int, double, double, double, double, double);
+    
     void calculate_sensoredges(); //tested
     
     void set_location_x(double x){location_x=x;};
@@ -120,7 +123,7 @@ public:
     void SensorEdgeAndMovement(double location_x_animal, double location_y_animal,double previous_x_animal, double previous_y_animal,int Individual_ID,  double move_angle, int itnumber, double m_animal,double c_animal, double m_detector, double c_detector,double g_detector,double vert, double horz, double disttotal,std::ofstream & Captures, int stepnumber); //tested
     void SensorCircAndMovement(double location_x_animal, double location_y_animal,  double previous_x_animal, double previous_y_animal, int Individual_ID, double move_angle, int itnumber,double m_animal, double c_animal, double disttotal, std::ofstream &Captures, int stepnumber); //tested
     void CapturesInsideCameraAngle(int Individual_ID, double move_angle,int itnumber, std::ofstream &Captures,int stepnumber); //tested
-    void CapturesIntersection(double location_x_animal, double location_y_animal, double previous_x_animal, double previous_y_animal, int Individual_ID,   double move_angle, int itnumber, std::ofstream &Captures, int stepnumber);
+    void CapturesIntersection(double location_x_animal, double location_y_animal, double previous_x_animal, double previous_y_animal, int Individual_ID,   double move_angle, int itnumber, std::ofstream &Captures, int stepnumber); //tested
     
     void UpdateCaptures(int Animal_ID, int itnumber, std::ofstream &Captures, int stepnumber);
     void animal_in_out_range(int animal_id, double time, int stepnumber);

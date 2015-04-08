@@ -15,6 +15,9 @@
 		3F5856641AC304260075EF2B /* Animal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F5856621AC304260075EF2B /* Animal.cpp */; };
 		3F5856651AC304260075EF2B /* Animal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F5856621AC304260075EF2B /* Animal.cpp */; };
 		3F5856671AC3117E0075EF2B /* testAnimal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F5856661AC3117E0075EF2B /* testAnimal.cpp */; };
+		3FE27DA71AD5453F00F61893 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE27DA51AD5453F00F61893 /* World.cpp */; };
+		3FE27DA81AD5453F00F61893 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE27DA51AD5453F00F61893 /* World.cpp */; };
+		3FE27DAA1AD5455200F61893 /* testWorld.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FE27DA91AD5455200F61893 /* testWorld.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +53,9 @@
 		3F5856621AC304260075EF2B /* Animal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animal.cpp; sourceTree = "<group>"; };
 		3F5856631AC304260075EF2B /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
 		3F5856661AC3117E0075EF2B /* testAnimal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testAnimal.cpp; sourceTree = "<group>"; };
+		3FE27DA51AD5453F00F61893 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
+		3FE27DA61AD5453F00F61893 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
+		3FE27DA91AD5455200F61893 /* testWorld.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testWorld.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				3F5856271AC2BBAD0075EF2B /* main.cpp */,
+				3FE27DA51AD5453F00F61893 /* World.cpp */,
+				3FE27DA61AD5453F00F61893 /* World.h */,
 				3F5856621AC304260075EF2B /* Animal.cpp */,
 				3F5856631AC304260075EF2B /* Animal.h */,
 				3F393E171AC5708C00DC443F /* Sensor.cpp */,
@@ -106,6 +114,7 @@
 				3F58563A1AC2BCD70075EF2B /* catch.hpp */,
 				3F5856351AC2BC9E0075EF2B /* main.cpp */,
 				3F5856661AC3117E0075EF2B /* testAnimal.cpp */,
+				3FE27DA91AD5455200F61893 /* testWorld.cpp */,
 				3F393E1B1AC581E200DC443F /* testSensor.cpp */,
 			);
 			path = TestSnowLeopardSimulation;
@@ -190,6 +199,7 @@
 			files = (
 				3F5856281AC2BBAD0075EF2B /* main.cpp in Sources */,
 				3F5856641AC304260075EF2B /* Animal.cpp in Sources */,
+				3FE27DA71AD5453F00F61893 /* World.cpp in Sources */,
 				3F393E191AC5708C00DC443F /* Sensor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,8 +210,10 @@
 			files = (
 				3F5856361AC2BC9E0075EF2B /* main.cpp in Sources */,
 				3F393E1A1AC5708C00DC443F /* Sensor.cpp in Sources */,
+				3FE27DA81AD5453F00F61893 /* World.cpp in Sources */,
 				3F393E1C1AC581E200DC443F /* testSensor.cpp in Sources */,
 				3F5856671AC3117E0075EF2B /* testAnimal.cpp in Sources */,
+				3FE27DAA1AD5455200F61893 /* testWorld.cpp in Sources */,
 				3F5856651AC304260075EF2B /* Animal.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -44,6 +44,14 @@ private:
 
 public:
     
+    Animal();
+    Animal(int AnimalId,int Iteration, int SaveMovement,
+                   // movement setups
+           double CentreHome_r,double MaximumDistance,double no_of_move_states,
+           std::vector<double> probability, std::vector<std::vector<double>> mean_vector, std::vector<std::vector<double>> variance_vector,
+           double x, double y, double a, double seed );
+    
+    void set_AnimalId(int Id){AnimalId= Id;};
     void set_MaximumDistance(double newmax){MaximumDistance = newmax;};
     
     void set_Current_x(double newx){Current_x = newx;};
