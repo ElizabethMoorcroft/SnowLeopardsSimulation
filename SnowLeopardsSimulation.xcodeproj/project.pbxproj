@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F13D3431AD67384009F0C64 /* CheckingSensors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F13D3411AD67384009F0C64 /* CheckingSensors.cpp */; };
+		3F13D3441AD67384009F0C64 /* CheckingSensors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F13D3411AD67384009F0C64 /* CheckingSensors.cpp */; };
 		3F393E191AC5708C00DC443F /* Sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F393E171AC5708C00DC443F /* Sensor.cpp */; };
 		3F393E1A1AC5708C00DC443F /* Sensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F393E171AC5708C00DC443F /* Sensor.cpp */; };
 		3F393E1C1AC581E200DC443F /* testSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F393E1B1AC581E200DC443F /* testSensor.cpp */; };
@@ -42,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F13D3411AD67384009F0C64 /* CheckingSensors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CheckingSensors.cpp; sourceTree = "<group>"; };
+		3F13D3421AD67384009F0C64 /* CheckingSensors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckingSensors.h; sourceTree = "<group>"; };
 		3F393E171AC5708C00DC443F /* Sensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sensor.cpp; sourceTree = "<group>"; };
 		3F393E181AC5708C00DC443F /* Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sensor.h; sourceTree = "<group>"; };
 		3F393E1B1AC581E200DC443F /* testSensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testSensor.cpp; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				3FE27DA61AD5453F00F61893 /* World.h */,
 				3F5856621AC304260075EF2B /* Animal.cpp */,
 				3F5856631AC304260075EF2B /* Animal.h */,
+				3F13D3411AD67384009F0C64 /* CheckingSensors.cpp */,
+				3F13D3421AD67384009F0C64 /* CheckingSensors.h */,
 				3F393E171AC5708C00DC443F /* Sensor.cpp */,
 				3F393E181AC5708C00DC443F /* Sensor.h */,
 			);
@@ -201,6 +207,7 @@
 				3F5856641AC304260075EF2B /* Animal.cpp in Sources */,
 				3FE27DA71AD5453F00F61893 /* World.cpp in Sources */,
 				3F393E191AC5708C00DC443F /* Sensor.cpp in Sources */,
+				3F13D3431AD67384009F0C64 /* CheckingSensors.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +220,7 @@
 				3FE27DA81AD5453F00F61893 /* World.cpp in Sources */,
 				3F393E1C1AC581E200DC443F /* testSensor.cpp in Sources */,
 				3F5856671AC3117E0075EF2B /* testAnimal.cpp in Sources */,
+				3F13D3441AD67384009F0C64 /* CheckingSensors.cpp in Sources */,
 				3FE27DAA1AD5455200F61893 /* testWorld.cpp in Sources */,
 				3F5856651AC304260075EF2B /* Animal.cpp in Sources */,
 			);

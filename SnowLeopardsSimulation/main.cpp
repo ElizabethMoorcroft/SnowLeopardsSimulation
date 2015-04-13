@@ -15,26 +15,17 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    std::cout << "Hello, World!\n";
-    
     World sc;
-    sc.MultipleIterations(100, //No cameras
-                          1, //No iterations
-                          "/Users/student/Documents/xx",
-                          1000, //space between camera
-                          {M_PI}, // camera width
-                          {10}, //camera radius
-                          10, //No steps
-                           1, //Save Movement
-                           20000, //radius
-                          15000, //Max distance moved
-                           2,//No states
-                            {0.5,0.5}, // prob
-                           {{0.5,1},{0.75,2}}, //mean
-                          {{0.5,0,0,2},{0.5,0,0,2}}, ///variance
-                          5 // No of animals
-                          );
-
+    //"TestReadIn.txt"
+    sc.runsimulation({"/Users/student/Documents/ForSim10Apr--SexF--MarkovTransitionsTRUE.txt","/Users/student/Documents/ForSim10Apr--SexM--MarkovTransitionsTRUE.txt"},
+                     (1*1), 100, "/Users/student/Documents/xx",
+                     500, {M_PI}, {200},
+                     432, //432
+                     0, //save move
+                     15000,
+                     100000,//10000,
+                     0.5);
+    
     
     
     //std::cout << "state" <<state <<std::endl;

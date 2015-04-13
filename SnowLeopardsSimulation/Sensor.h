@@ -58,7 +58,7 @@ private:
 public:
     
     Sensor();
-    Sensor(int, double, double, double, double, double);
+    Sensor(int, double, double, double, double, double,int );
     
     void calculate_sensoredges(); //tested
     
@@ -67,6 +67,9 @@ public:
     void set_radius(double r){radius=r;};
     void set_angle_direction(double a) {angle_direction=a;};
     void set_angle_halfwidth(double a) {angle_halfwidth=a;};
+    
+    double get_x(){return(location_x);};
+    double get_y(){return(location_y);};
     
     //lhs
     double get_lhs_angle(){return (lhs_angle);};

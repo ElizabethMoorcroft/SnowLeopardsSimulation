@@ -20,6 +20,7 @@ private:
     int Iteration;
     int step_number;
     int SaveMovement;
+    int Sex;
     
     // movement setups
     double CentreHome_x;
@@ -30,6 +31,7 @@ private:
     std::vector<double> probability;
     std::vector<std::vector<double>> mean_vector;
     std::vector<std::vector<double>> variance_vector;
+    std::vector<std::vector<double>> transitions_vector;
     
     // current movement
     int Current_state;
@@ -49,7 +51,9 @@ public:
                    // movement setups
            double CentreHome_r,double MaximumDistance,double no_of_move_states,
            std::vector<double> probability, std::vector<std::vector<double>> mean_vector, std::vector<std::vector<double>> variance_vector,
-           double x, double y, double a, double seed );
+           std::vector<std::vector<double>> transitions_vector,
+           double x, double y, double a, double seed,
+           std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures, int);
     
     void set_AnimalId(int Id){AnimalId= Id;};
     void set_MaximumDistance(double newmax){MaximumDistance = newmax;};
@@ -73,7 +77,7 @@ public:
     double get_Total_distance(){return Total_distance;};
     
     
-    void LocationVector(double previous_x, double previous_y, int LeaveEntreCode, int End, std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures,  int checkcapture);
+    void LocationVector(double previous_x, double previous_y, int LeaveEntreCode, int End, std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures);
     void UpdateLocation (double, std::ofstream &Movement, std::vector<Sensor*>, std::ofstream &Captures);
     void NewLocation (double);
     std::vector<double> NewLocationFromMult(double seed, std::vector<double> mean, std::vector<double> variance); //tested

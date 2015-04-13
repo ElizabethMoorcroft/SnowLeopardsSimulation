@@ -18,8 +18,9 @@
 #include <string>
 
 Sensor::Sensor(){};
-Sensor::Sensor(int NoAnimal, double x, double y, double r, double direct, double halfwidth){
+Sensor::Sensor(int NoAnimal, double x, double y, double r, double direct, double halfwidth, int id){
     //creates vectors
+    //std::cout<<"no of animals" << NoAnimal <<std::endl;
     std::vector<int> temp(NoAnimal,0);
     animals_in_sensor_range =temp;
     animals_just_enter_range =temp;
@@ -29,6 +30,7 @@ Sensor::Sensor(int NoAnimal, double x, double y, double r, double direct, double
     set_radius(r);
     set_angle_direction(direct);
     set_angle_halfwidth(halfwidth);
+    SensorID = id;
     
 };
 
@@ -342,13 +344,14 @@ void Sensor::CapturesIntersection(double location_x_animal, double location_y_an
     //  - intercpet would be: y-mx=c (where y and x are known)
     double m_animal  = GradientFromAngle(move_angle);
     double c_animal  = location_y_animal-location_x_animal*m_animal;
-    //std::cout<< "location_y_animal " << location_y_animal <<" location_x_animal " << location_x_animal <<" m_animal " << m_animal<<" c_animal " << c_animal<<std::endl;
+    //std::cout<< "location_y_animal " << location_y_animal <<" location_x_animal " << location_x_animal <<" location_x " << location_x<<" location_y " << location_y<<std::endl;
     // Checks the beginning of the step
     capture_x=previous_x_animal;
     capture_y=previous_y_animal;
     capture_t=0;
     capture_a=0;
-    if(disttotal<=radius){CapturesInsideCameraAngle(Individual_ID, move_angle, itnumber, Captures,stepnumber);};
+    double disttocam =DistTwoPoints(previous_x_animal,location_x,previous_y_animal,location_y);
+    if(disttocam<=radius){CapturesInsideCameraAngle(Individual_ID, move_angle, itnumber, Captures,stepnumber);};
     
     
     if(angle_halfwidth < M_PI){ // If the Sensor width is 360˚ then the straight line edges are not important
@@ -415,7 +418,7 @@ std::vector <double> Sensor::TimeAndAngleCal(double Y, double X, double previous
  
 void Sensor::UpdateCaptures(int Animal_ID, int itnumber, std::ofstream &Captures, int stepnumber){
     capture_count +=1;
-    //std::cout<<"capture_x " << capture_x <<" capture_y " << capture_y <<" capture_a " << capture_a <<" capture_t " << capture_t <<std::endl;
+    //std::cout<<"Animal_ID " << Animal_ID <<" stepnumber " << stepnumber <<std::endl;
     animal_in_out_range(Animal_ID, capture_t, stepnumber); //runs algorithm to find if moving into/out of camera zone
     Captures << Animal_ID <<","
             << stepnumber <<","
