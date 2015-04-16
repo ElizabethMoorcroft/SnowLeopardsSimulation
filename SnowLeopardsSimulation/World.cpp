@@ -43,7 +43,7 @@ std::vector<Sensor*>  World::trappinggrid(int NoSensors, double cam_interval, st
             
             for(int sensor1 =0; sensor1<LengthSW; sensor1 ++){
                 for(int sensor=0; sensor<LengthSR; sensor++){
-                    //std::cout<< "sensor: " << sensorcount << "/"<< NoSensors <<std::endl;
+                    std::cout<< "sensor: " << sensorcount << "/"<< NoSensors << " , " << NoAnimals <<std::endl;
                     AllSensors[sensorcount] =new Sensor(NoAnimals, x_location, y_location, SensorRadius[sensor],0, SensorWidth[sensor1],sensorcount);
                     //Saves the locations and the angle of the Sensor
                     Sensors << sensorcount << //1st column
@@ -100,12 +100,13 @@ void World::AnimalMovement(int id, double randomstart,
                    no_of_move_states,probability,mean_vector,variance_vector,
                    transitions,
                    xlocation, ylocation, CurrentAngleTemp, seed4,
-                   Movement,  AllSensors , Captures, Sex);
+                   Movement,  AllSensors , Captures, Sex, NoSteps);
     
     //Sets seed for a random number
     //Random number stream for the movemnet of the animal
     srand(seed5);
     for(int j=0; j<NoSteps; j++){
+        //std::cout<< j<<"/" <<NoSteps <<std::endl;
         seed6 =double(rand());
         for(int extra=0; extra<999; extra++){temp=double(rand());};
         Animal1.UpdateLocation(seed6, Movement,  AllSensors, Captures);
@@ -147,27 +148,28 @@ void World::oneiteration(double cam_interval,
     
     double seed1, temp;
     int sex;
-    int nomales = propMale*NoAnimal;
     int lengthsensors = AllSensors.size();
     double buffer ;
    // if(lengthsensors==2){ buffer = fmax(CentreHome_r[0],CentreHome_r[1]); } else if(lengthsensors==1){buffer = CentreHome_r[0];} else{std::cout<<"buffer problem"; EXIT_FAILURE;};
     buffer = fmax(CentreHome_r[0],CentreHome_r[1]);
-    std::cout<<"nomales " <<nomales <<std::endl;
+    //std::cout<<"nomales " <<nomales <<std::endl;
     double area = pow(buffer*2 + cam_interval*(sqrt(NoSensors)-1),2);
     double density = NoAnimal/area;
+    int nomales = propMale*NoAnimal;
+
     Settings << NoAnimal << "," << NoSteps <<"," <<Iteration << "," << nomales <<"," << area <<","<< density << "\n";
     //run animals
     for(int i=0; i<NoAnimal; i++){
         
         srand(seed);
-        for(int k=0; k<NoAnimal;k++){temp=double(rand());}
+        for(int k=0; k<100;k++){temp=double(rand());} // check kmax
         seed1=double(rand());
-        for(int k=0; k<NoAnimal;k++){temp=double(rand());}
+        for(int k=0; k<100;k++){temp=double(rand());} // check kmax
         seed= double(rand());
 
         if(i<nomales){sex = 1;} else{sex =0;};
         
-        std::cout<< "Animal " <<i+1 <<" / "<<NoAnimal<< " r " << CentreHome_r[sex] <<std::endl;
+        //std::cout<< "Animal " <<i+1 <<" / "<<NoAnimal<< " r " << CentreHome_r[sex] <<std::endl;
         AnimalMovement(i, seed1, Iteration, SaveMovement,
                         CentreHome_r[sex],MaximumDistance,no_of_move_states[sex],probability[sex],mean_vector[sex],variance_vector[sex], transitions[sex],
                        NoSteps, Movement ,  AllSensors , Captures,cam_interval, lengthsensors, sex, buffer);
@@ -183,7 +185,7 @@ void World::MultipleIterations(int NoSensors, int NoInterations, std::string sav
                                std::vector<double>  no_of_move_states,std::vector<std::vector<double>> probability,
                                std::vector<std::vector<std::vector<double>>> mean_vector,std::vector<std::vector<std::vector<double>>> variance_vector,
                                std::vector<std::vector<std::vector<double>>> transitions,
-                               int NoAnimals,
+                               double Animaldensity,
                                 double propMale
                                  ){
     
@@ -248,7 +250,11 @@ void World::MultipleIterations(int NoSensors, int NoInterations, std::string sav
     ","<< "density" <<
     "\n";
     
-    
+    double area = pow(cam_interval*(sqrt(NoSensors)-1)+2*fmax(CentreHome_r[0],CentreHome_r[1]),2);
+    //double NoAnimals_ = Animaldensity*area;
+    int NoAnimals = Animaldensity*area;
+    std::cout<< "NoAnimals_" <<  " " << NoAnimals <<" Animaldensity " << Animaldensity << " area "<<area <<std::endl;
+
     //set up grid
     std::vector<Sensor*>  AllSensors = trappinggrid(NoSensors, cam_interval, Sensors,  SensorWidth, SensorRadius, NoAnimals);
     
@@ -402,8 +408,11 @@ void World::runsimulation(std::vector<std::string> inputs, int NoSensors, int No
                           int NoSteps,
                           int SaveMovement,
                           double MaximumDistance,
-                          int NoAnimals, double propMale){
+                          double density, double propMale){
     int nostrings= inputs.size();
+    
+    std::cout<< " Animaldensity " << density << std::endl;
+
     
     std::vector<double>  no_of_move_states;
     std::vector<std::vector<double>> probability;
@@ -435,7 +444,7 @@ void World::runsimulation(std::vector<std::string> inputs, int NoSensors, int No
                        no_of_move_states, probability,
                         mean_vector, variance_vector,
                        transitions,
-                      NoAnimals,
+                      density,
                         propMale
                        );
 };
