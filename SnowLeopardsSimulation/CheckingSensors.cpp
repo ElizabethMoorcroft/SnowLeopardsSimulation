@@ -30,7 +30,8 @@ CheckingSensor::CheckingSensor(double currentx,double currenty, double currentan
     
     for(int sensor=0; sensor<(NoSensors); sensor++){
         double x = AllSensors[sensor] -> get_x();double y = AllSensors[sensor] -> get_y();
-        if(sqrt(pow(x-previousx,2)+pow(y-previousy,2))<15000){
+        if(sqrt(pow(x-previousx,2)+pow(y-previousy,2))<15000 &&
+           sqrt(pow(x-currentx,2)+pow(y-currenty,2))<15000){
         AllSensors[sensor] -> CapturesIntersection(currentx,currenty,
                                                    previousx,previousy,
                                                    id,currentangle,

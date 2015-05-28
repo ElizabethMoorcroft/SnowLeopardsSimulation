@@ -276,10 +276,10 @@ std::vector<double> Animal::ThreeSeeds(double seed){
     srand(seed);
     double temp;
     std::vector<double> output(3);
-    for(int i=0; i<(601); i++){
-        if(i==200){output[0] =double (rand());}
-        else if(i==400){output[1] =double (rand());}
-        else if(i==600){output[2] =double (rand());}
+    for(int i=0; i<(151); i++){
+        if(i==50){output[0] =double (rand());}
+        else if(i==100){output[1] =double (rand());}
+        else if(i==150){output[2] =double (rand());}
         else {temp =double (rand());}
     };
     return output;

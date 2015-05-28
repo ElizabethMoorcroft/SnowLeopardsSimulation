@@ -24,10 +24,10 @@
 
 
 
-std::vector<Sensor*>  World::trappinggrid(int NoSensors, double cam_interval, std::ofstream &Sensors, std::vector<double> SensorWidth, std::vector<double> SensorRadius, int NoAnimals){
+std::vector<Sensor*>  World::trappinggrid(int NoSensors, double cam_interval, std::ofstream &Sensors, std::vector<double> SensorWidth, std::vector<double> SensorRadius, double NoAnimals){
     
     int no_cam_locations_y = sqrt(NoSensors); int no_cam_locations_x = sqrt(NoSensors);
-
+    std::cout<<"No Animals " << NoAnimals <<std::endl;
     std::vector<Sensor*> AllSensors(pow(no_cam_locations_y,2));
     
     int sensorcount=0;
@@ -43,7 +43,7 @@ std::vector<Sensor*>  World::trappinggrid(int NoSensors, double cam_interval, st
             
             for(int sensor1 =0; sensor1<LengthSW; sensor1 ++){
                 for(int sensor=0; sensor<LengthSR; sensor++){
-                    std::cout<< "sensor: " << sensorcount << "/"<< NoSensors << " , " << NoAnimals <<std::endl;
+                    //std::cout<< "sensor: " << sensorcount << "/"<< NoSensors << " , " << NoAnimals <<std::endl;
                     AllSensors[sensorcount] =new Sensor(NoAnimals, x_location, y_location, SensorRadius[sensor],0, SensorWidth[sensor1],sensorcount);
                     //Saves the locations and the angle of the Sensor
                     Sensors << sensorcount << //1st column
@@ -86,8 +86,8 @@ void World::AnimalMovement(int id, double randomstart,
     };
     
     //sets random location
-    double xlocation = StartLocation(NoSensors, cam_interval,seed1, CentreHome_r);
-    double ylocation = StartLocation(NoSensors, cam_interval,seed2, CentreHome_r);
+    double xlocation = StartLocation(NoSensors, cam_interval,seed1, buffer);
+    double ylocation = StartLocation(NoSensors, cam_interval,seed2, buffer);
     
     // To choose a start angle, sets up a random number class
     // Uses a radom number from stream RandomNumberStreamAnimalAngle for a random seed
@@ -108,7 +108,7 @@ void World::AnimalMovement(int id, double randomstart,
     for(int j=0; j<NoSteps; j++){
         //std::cout<< j<<"/" <<NoSteps <<std::endl;
         seed6 =double(rand());
-        for(int extra=0; extra<999; extra++){temp=double(rand());};
+        for(int extra=0; extra<199; extra++){temp=double(rand());};
         Animal1.UpdateLocation(seed6, Movement,  AllSensors, Captures);
     }; //End of j loop for Steps
 
@@ -143,16 +143,15 @@ void World::oneiteration(double cam_interval,
                 std::vector<std::vector<std::vector<double>>> mean_vector,std::vector<std::vector<std::vector<double>>> variance_vector,
                  std::vector<std::vector<std::vector<double>>> transitions,
                 double seed,
-                std::ofstream &Captures, std::ofstream &Movement,std::vector<Sensor*> AllSensors, int NoAnimal, double propMale,int NoSensors,
+                std::ofstream &Captures, std::ofstream &Movement,std::vector<Sensor*> AllSensors, double NoAnimal, double propMale,int NoSensors,
                          std::ofstream &Settings){
     
     double seed1, temp;
     int sex;
     int lengthsensors = AllSensors.size();
     double buffer ;
-   // if(lengthsensors==2){ buffer = fmax(CentreHome_r[0],CentreHome_r[1]); } else if(lengthsensors==1){buffer = CentreHome_r[0];} else{std::cout<<"buffer problem"; EXIT_FAILURE;};
+
     buffer = fmax(CentreHome_r[0],CentreHome_r[1]);
-    //std::cout<<"nomales " <<nomales <<std::endl;
     double area = pow(buffer*2 + cam_interval*(sqrt(NoSensors)-1),2);
     double density = NoAnimal/area;
     int nomales = propMale*NoAnimal;
@@ -169,7 +168,7 @@ void World::oneiteration(double cam_interval,
 
         if(i<nomales){sex = 1;} else{sex =0;};
         
-        //std::cout<< "Animal " <<i+1 <<" / "<<NoAnimal<< " r " << CentreHome_r[sex] <<std::endl;
+        std::cout<< "Animal " <<i+1 <<" / "<<NoAnimal<< " s " << SaveMovement<<std::endl;
         AnimalMovement(i, seed1, Iteration, SaveMovement,
                         CentreHome_r[sex],MaximumDistance,no_of_move_states[sex],probability[sex],mean_vector[sex],variance_vector[sex], transitions[sex],
                        NoSteps, Movement ,  AllSensors , Captures,cam_interval, lengthsensors, sex, buffer);
@@ -243,16 +242,15 @@ void World::MultipleIterations(int NoSensors, int NoInterations, std::string sav
     std::ofstream &Settings = SettingsNotRef;
     Settings.open(make_filename(savevalue, ",Settings.csv" ).c_str());
     Settings << "number.of.animals" <<
-    "," << "number.of.steps" <<
-    "," <<"iteration.number" <<
-    "," << "number.of.males" <<
-    "," << "area" <<
-    ","<< "density" <<
+        "," << "number.of.steps" <<
+        "," <<"iteration.number" <<
+        "," << "number.of.males" <<
+        "," << "area" <<
+        "," << "density" <<
     "\n";
     
     double area = pow(cam_interval*(sqrt(NoSensors)-1)+2*fmax(CentreHome_r[0],CentreHome_r[1]),2);
-    //double NoAnimals_ = Animaldensity*area;
-    int NoAnimals = Animaldensity*area;
+    double NoAnimals = ceil(Animaldensity*area);
     std::cout<< "NoAnimals_" <<  " " << NoAnimals <<" Animaldensity " << Animaldensity << " area "<<area <<std::endl;
 
     //set up grid
@@ -263,7 +261,9 @@ void World::MultipleIterations(int NoSensors, int NoInterations, std::string sav
     for(int iteration =0; iteration<NoInterations;iteration++){
         
         srand(iteration);
-        for(int j=0; j<NoInterations; j++){
+        for(int j=0; j<10; j++){
+
+        //for(int j=0; j<NoInterations; j++){
             seed=double(rand());
         };
         
@@ -283,14 +283,15 @@ void World::MultipleIterations(int NoSensors, int NoInterations, std::string sav
     // Closes files that are open in all iterations
     Captures.close();
     Movement.close();
+    Settings.close();
     CapturesNotRef.close();
     MovementNotRef.close();
+    SettingsNotRef.close();
     for(int i=0; i<NoSensors; i++) {delete AllSensors[i];};
 };
 
 
-double World::string_to_double( const std::string& s )
-{
+double World::string_to_double( const std::string& s ){
     std::istringstream i(s);
     double x;
     if (!(i >> x))

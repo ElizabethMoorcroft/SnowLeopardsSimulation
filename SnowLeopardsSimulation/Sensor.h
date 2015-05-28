@@ -58,7 +58,7 @@ private:
 public:
     
     Sensor();
-    Sensor(int, double, double, double, double, double,int );
+    Sensor(double, double, double, double, double, double,int );
     
     void calculate_sensoredges(); //tested
     

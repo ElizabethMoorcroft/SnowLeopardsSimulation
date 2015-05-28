@@ -18,9 +18,9 @@
 #include <string>
 
 Sensor::Sensor(){};
-Sensor::Sensor(int NoAnimal, double x, double y, double r, double direct, double halfwidth, int id){
+Sensor::Sensor(double NoAnimal, double x, double y, double r, double direct, double halfwidth, int id){
     //creates vectors
-    std::cout<<"no of animals " << NoAnimal <<std::endl;
+    //std::cout<<"no of animals " << NoAnimal <<std::endl;
     std::vector<int> temp(NoAnimal,0);
     animals_in_sensor_range =temp;
     animals_just_enter_range =temp;

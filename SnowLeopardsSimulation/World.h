@@ -28,7 +28,7 @@ class World{
 private:
 
 public:
-    std::vector<Sensor*> trappinggrid(int, double, std::ofstream&, std::vector<double>, std::vector<double>, int);
+    std::vector<Sensor*> trappinggrid(int, double, std::ofstream&, std::vector<double>, std::vector<double>, double);
     void AnimalMovement(int id, double randomstart,
                         int Iteration, int SaveMovement,
                         double CentreHome_r,double MaximumDistance,
@@ -49,7 +49,7 @@ public:
                        std::vector<std::vector<std::vector<double>>> mean_vector,std::vector<std::vector<std::vector<double>>> variance_vector,
                        std::vector<std::vector<std::vector<double>>> transitions,
                        double seed,
-                       std::ofstream &Captures, std::ofstream &Movement, std::vector<Sensor*> AllSensors, int NoAnimals, double , int NoSensors,std::ofstream &Settings);
+                       std::ofstream &Captures, std::ofstream &Movement, std::vector<Sensor*> AllSensors, double NoAnimals, double , int NoSensors,std::ofstream &Settings);
     void MultipleIterations(int NoSensors, int NoInterations, std::string savevalue,
                                    double cam_interval, std::vector<double> SensorWidth, std::vector<double> SensorRadius,
                                    int NoSteps,
