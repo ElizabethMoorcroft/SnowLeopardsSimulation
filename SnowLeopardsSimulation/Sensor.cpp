@@ -20,11 +20,7 @@
 Sensor::Sensor(){};
 Sensor::Sensor(double NoAnimal, double x, double y, double r, double direct, double halfwidth, int id){
     //creates vectors
-<<<<<<< HEAD
     //std::cout<<"no of animals " << NoAnimal <<std::endl;
-=======
-    //std::cout<<"no of animals" << NoAnimal <<std::endl;
->>>>>>> parent of 9f11446... Working correct code
     std::vector<int> temp(NoAnimal,0);
     animals_in_sensor_range =temp;
     animals_just_enter_range =temp;
