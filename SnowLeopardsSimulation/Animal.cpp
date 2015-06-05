@@ -26,16 +26,13 @@ Animal::Animal(int AnimalId,int iteration,int savemovement,
                double no_of_move_states,std::vector<double> probability,std::vector<std::vector<double>> mean_vector,std::vector<std::vector<double>> variance_vector,
                std::vector<std::vector<double>> transitions,
                double x, double y, double a, double seed,
-               std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures, int sex, int steps
+               std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures, int sex
                ){
     set_AnimalId(AnimalId);
     set_MaximumDistance(MaximumDistance);
     
     set_Current_x(x);
     set_Current_y(y);
-    Current_angle = a;
-    
-    maxsteps=steps;
     
     
     set_no_of_move_states(no_of_move_states);
@@ -63,7 +60,7 @@ Animal::Animal(int AnimalId,int iteration,int savemovement,
 
 void Animal::LocationVector(double previous_x, double previous_y, int LeaveEntreCode, int End, std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures){
     
-    if(SaveMovement==1 || step_number==0 || step_number == (maxsteps-1)){
+    if(SaveMovement==1 || step_number==0 || step_number == 431){
         //std::cout<< "movement being saved" <<std::endl;
         
         
@@ -124,6 +121,7 @@ void Animal::NewLocation (double seed){
     std::vector<double> variance = variance_vector[new_state];
     std::vector<double> newlocations(2);
     
+    //std::cout<<" new_state "<< new_state <<std::endl;
     
     int count =0;
     newlocations[0] = CentreHome_r+CentreHome_x; newlocations[1] = CentreHome_r+CentreHome_y;
@@ -155,9 +153,6 @@ void Animal::NewLocation (double seed){
         }
     
     }
-    
-    //std::cout<<" Total_distance "<< Total_distance << " CentreHome_r " << CentreHome_r<< " Current_distance " << Current_distance <<std::endl;
-
     
     Current_state = new_state;
     Current_x = newlocations[0];

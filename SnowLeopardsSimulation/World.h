@@ -58,7 +58,7 @@ public:
                             std::vector<double>  no_of_move_states,std::vector<std::vector<double>> probability,
                             std::vector<std::vector<std::vector<double>>> mean_vector,std::vector<std::vector<std::vector<double>>> variance_vector,
                             std::vector<std::vector<std::vector<double>>> transitions,
-                             double Animaldensity, double );
+                             int NoAnimals, double );
     double string_to_double( const std::string& s );
     std::vector<std::vector <std::vector <double>>> readparamters(std::string nameoffile);
     
@@ -67,7 +67,7 @@ public:
                   int NoSteps,
                   int SaveMovement,
                   double MaximumDistance,
-                  double Animaldensity, double propMale);
+                  int NoAnimals, double propMale);
 };
 
 #endif /* defined(__SnowLeopardsSimulation__World__) */
