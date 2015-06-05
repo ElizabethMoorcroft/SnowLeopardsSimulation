@@ -15,17 +15,19 @@
 
 int main(int argc, const char * argv[]) {
     // insert code here...
-    World sc; World sc1; World sc2; World sc3;
-    sc.runsimulation({"/Users/student/Documents/ForSim16Apr--SexF--MarkovTransitionsTRUE.txt"},
-                     (1*1), 1, // iterations
-                     "/Users/student/Documents/TEST",//TransitionsTRUE
-                     4000, {M_PI}, {10},
-                     432,//432
+
+    World sc;
+    //"TestReadIn.txt"
+    sc.runsimulation({"/Users/student/Documents/ForSim30Apr--SexF--MarkovTransitionsTRUE.txt","/Users/student/Documents/ForSim30Apr--SexM--MarkovTransitionsTRUE.txt"},
+                     (1*1), 1, "/Users/student/Documents/xx",
+                     500, {M_PI}, {200},
+                     432, //432
                      1, //save move
                      15000,
-                     0.00000002,//density
+                     0.000002,//10000,
                      0.5);
-
+    
+    
     
     //std::cout << "state" <<state <<std::endl;
     //std::cout << "returnedvector (" <<returnedvector[0]<<","<<returnedvector[1]<<")"<<std::endl;

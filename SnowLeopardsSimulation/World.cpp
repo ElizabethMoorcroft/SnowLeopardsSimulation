@@ -43,7 +43,7 @@ std::vector<Sensor*>  World::trappinggrid(int NoSensors, double cam_interval, st
             
             for(int sensor1 =0; sensor1<LengthSW; sensor1 ++){
                 for(int sensor=0; sensor<LengthSR; sensor++){
-                    //std::cout<< "sensor: " << sensorcount << "/"<< NoSensors << " , " << NoAnimals <<std::endl;
+
                     AllSensors[sensorcount] =new Sensor(NoAnimals, x_location, y_location, SensorRadius[sensor],0, SensorWidth[sensor1],sensorcount);
                     //Saves the locations and the angle of the Sensor
                     Sensors << sensorcount << //1st column
@@ -100,13 +100,12 @@ void World::AnimalMovement(int id, double randomstart,
                    no_of_move_states,probability,mean_vector,variance_vector,
                    transitions,
                    xlocation, ylocation, CurrentAngleTemp, seed4,
-                   Movement,  AllSensors , Captures, Sex, NoSteps);
+                   Movement,  AllSensors , Captures, Sex);
     
     //Sets seed for a random number
     //Random number stream for the movemnet of the animal
     srand(seed5);
     for(int j=0; j<NoSteps; j++){
-        //std::cout<< j<<"/" <<NoSteps <<std::endl;
         seed6 =double(rand());
         for(int extra=0; extra<199; extra++){temp=double(rand());};
         Animal1.UpdateLocation(seed6, Movement,  AllSensors, Captures);
@@ -148,32 +147,26 @@ void World::oneiteration(double cam_interval,
     
     double seed1, temp;
     int sex;
+    int nomales = propMale*NoAnimal;
     int lengthsensors = AllSensors.size();
     double buffer ;
 
     buffer = fmax(CentreHome_r[0],CentreHome_r[1]);
+
     double area = pow(buffer*2 + cam_interval*(sqrt(NoSensors)-1),2);
     double density = NoAnimal/area;
-    int nomales = propMale*NoAnimal;
-
     Settings << NoAnimal << "," << NoSteps <<"," <<Iteration << "," << nomales <<"," << area <<","<< density << "\n";
     //run animals
     for(int i=0; i<NoAnimal; i++){
         
         srand(seed);
-        for(int k=0; k<100;k++){temp=double(rand());} // check kmax
+        for(int k=0; k<NoAnimal;k++){temp=double(rand());}
         seed1=double(rand());
-        for(int k=0; k<100;k++){temp=double(rand());} // check kmax
+        for(int k=0; k<NoAnimal;k++){temp=double(rand());}
         seed= double(rand());
 
         if(i<nomales){sex = 1;} else{sex =0;};
         
-        std::cout<< "Animal " <<i+1 <<" / "<<NoAnimal<< " s " << SaveMovement<<std::endl;
-        std::cout<< i<<" / "<<seed1<<" / "<<Iteration<<" / "<<SaveMovement<<" / "<<std::endl;
-        std::cout<< CentreHome_r[sex]<<" / "<<MaximumDistance<<" / "<<no_of_move_states[sex]<<" / "<<std::endl;
-        //std::cout << probability[sex] <<std::endl;
-        //std::cout <<" / "<<mean_vector[sex]<<" / "<<variance_vector[sex]<<" / "<<transitions[sex]<<" / "
-        std::cout << NoSteps  <<" / "<<cam_interval<<" / "<< lengthsensors<<" / "<< sex<<" / "<< buffer<<std::endl;
         AnimalMovement(i, seed1, Iteration, SaveMovement,
                         CentreHome_r[sex], MaximumDistance, no_of_move_states[sex], probability[sex], mean_vector[sex],variance_vector[sex], transitions[sex],
                        NoSteps, Movement ,  AllSensors , Captures,cam_interval, lengthsensors, sex, buffer);
@@ -255,8 +248,10 @@ void World::MultipleIterations(int NoSensors, int NoInterations, std::string sav
     "\n";
     
     double area = pow(cam_interval*(sqrt(NoSensors)-1)+2*fmax(CentreHome_r[0],CentreHome_r[1]),2);
+    std::cout<<cam_interval<<  " " <<NoSensors<<  " " <<CentreHome_r[0]<<  " " <<CentreHome_r[1]<<std::endl;
     double NoAnimals = ceil(Animaldensity*area);
     std::cout<< "NoAnimals_" <<  " " << NoAnimals <<" Animaldensity " << Animaldensity << " area "<<area <<std::endl;
+
 
     //set up grid
     std::vector<Sensor*>  AllSensors = trappinggrid(NoSensors, cam_interval, Sensors,  SensorWidth, SensorRadius, NoAnimals);
@@ -326,7 +321,7 @@ std::vector<std::vector <std::vector <double>>> World::readparamters(std::string
     if (input.is_open()) {
         
         while (getline(input, line)) {
-            //std::cout <<"linecounter: " <<linecounter << std::endl;
+            std::cout <<"linecounter: " <<linecounter << std::endl;
             std::stringstream ss(line);
             std::string l;
             
@@ -368,8 +363,8 @@ std::vector<std::vector <std::vector <double>>> World::readparamters(std::string
                 int count=0;
                 while (count<1) {
                     getline(ss, l, ' ');
-                    //std::cout <<"prob l: " <<l <<" ,count: "<< count << std::endl;
                     maxarea[0] = string_to_double(l);
+                    std::cout <<"prob l: " <<l <<" ,count: "<< count << string_to_double(l) << std::endl;
                     count+=1;
                 }
             }
@@ -414,11 +409,8 @@ void World::runsimulation(std::vector<std::string> inputs, int NoSensors, int No
                           int NoSteps,
                           int SaveMovement,
                           double MaximumDistance,
-                          double density, double propMale){
+                          double DenAnimals, double propMale){
     int nostrings= inputs.size();
-    
-    std::cout<< " Animaldensity " << density << std::endl;
-
     
     std::vector<double>  no_of_move_states;
     std::vector<std::vector<double>> probability;
@@ -437,10 +429,11 @@ void World::runsimulation(std::vector<std::string> inputs, int NoSensors, int No
         variance_vector.push_back(files[2]);
         transitions.push_back(files[4]);
         double temp = sqrt(files[5][0][0]/M_PI);
+        std::cout<<  files[5][0][0] <<std::endl;
         CentreHome_r.push_back(temp);
     };
     
-    //std::cout<< " no states "<<no_of_move_states[0]<<std::endl;
+    std::cout<<  CentreHome_r[0]<< CentreHome_r[1] <<std::endl;
     
     MultipleIterations(NoSensors, NoInterations, savevalue,
                        cam_interval, SensorWidth, SensorRadius,
@@ -450,7 +443,7 @@ void World::runsimulation(std::vector<std::string> inputs, int NoSensors, int No
                        no_of_move_states, probability,
                         mean_vector, variance_vector,
                        transitions,
-                      density,
+                      DenAnimals,
                         propMale
                        );
 };

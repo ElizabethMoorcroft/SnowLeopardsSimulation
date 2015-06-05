@@ -32,7 +32,6 @@ private:
     std::vector<std::vector<double>> mean_vector;
     std::vector<std::vector<double>> variance_vector;
     std::vector<std::vector<double>> transitions_vector;
-    int maxsteps;
     
     // current movement
     int Current_state;
@@ -54,7 +53,7 @@ public:
            std::vector<double> probability, std::vector<std::vector<double>> mean_vector, std::vector<std::vector<double>> variance_vector,
            std::vector<std::vector<double>> transitions_vector,
            double x, double y, double a, double seed,
-           std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures, int, int);
+           std::ofstream &Movement, std::vector<Sensor*> AllSensors , std::ofstream &Captures, int);
     
     void set_AnimalId(int Id){AnimalId= Id;};
     void set_MaximumDistance(double newmax){MaximumDistance = newmax;};
