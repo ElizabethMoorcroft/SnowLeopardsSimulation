@@ -16,12 +16,12 @@
 int main(int argc, const char * argv[]) {
     // insert code here...
     World sc; World sc1; World sc2; World sc3;
-    sc.runsimulation({"/Users/student/Documents/ForSim30Apr--SexF--AverageSpeed.txt","/Users/student/Documents/ForSim30Apr--SexM--AverageSpeed.txt"},
-                     (13*13), 100, // iterations
-                     "/Users/student/Documents/AverageSpeed",//TransitionsTRUE
+    sc.runsimulation({"/Users/student/Documents/ForSim16Apr--SexF--MarkovTransitionsTRUE.txt"},
+                     (1*1), 1, // iterations
+                     "/Users/student/Documents/TEST",//TransitionsTRUE
                      4000, {M_PI}, {10},
                      432,//432
-                     0, //save move
+                     1, //save move
                      15000,
                      0.00000002,//density
                      0.5);

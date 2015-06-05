@@ -169,8 +169,13 @@ void World::oneiteration(double cam_interval,
         if(i<nomales){sex = 1;} else{sex =0;};
         
         std::cout<< "Animal " <<i+1 <<" / "<<NoAnimal<< " s " << SaveMovement<<std::endl;
+        std::cout<< i<<" / "<<seed1<<" / "<<Iteration<<" / "<<SaveMovement<<" / "<<std::endl;
+        std::cout<< CentreHome_r[sex]<<" / "<<MaximumDistance<<" / "<<no_of_move_states[sex]<<" / "<<std::endl;
+        //std::cout << probability[sex] <<std::endl;
+        //std::cout <<" / "<<mean_vector[sex]<<" / "<<variance_vector[sex]<<" / "<<transitions[sex]<<" / "
+        std::cout << NoSteps  <<" / "<<cam_interval<<" / "<< lengthsensors<<" / "<< sex<<" / "<< buffer<<std::endl;
         AnimalMovement(i, seed1, Iteration, SaveMovement,
-                        CentreHome_r[sex],MaximumDistance,no_of_move_states[sex],probability[sex],mean_vector[sex],variance_vector[sex], transitions[sex],
+                        CentreHome_r[sex], MaximumDistance, no_of_move_states[sex], probability[sex], mean_vector[sex],variance_vector[sex], transitions[sex],
                        NoSteps, Movement ,  AllSensors , Captures,cam_interval, lengthsensors, sex, buffer);
     }
 
