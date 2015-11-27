@@ -106,8 +106,8 @@ void World::AnimalMovement(int id, double randomstart,
     //Random number stream for the movemnet of the animal
     srand(seed5);
     for(int j=0; j<NoSteps; j++){
-        seed6 =double(rand());
         for(int extra=0; extra<199; extra++){temp=double(rand());};
+        seed6 =double(rand());
         Animal1.UpdateLocation(seed6, Movement,  AllSensors, Captures);
     }; //End of j loop for Steps
 
@@ -118,7 +118,13 @@ double World::StartLocation(int NoSensors, double cam_interval, double seed, dou
     int no_locations = sqrt(NoSensors);
     double width = (no_locations-1)*cam_interval;
     
-    srand(seed); double output= ((double) rand()/RAND_MAX)*(width + CentreHome_r*2)-CentreHome_r;
+    srand(seed);
+    double seed1 =0;
+    for(int j=0; j<101; j++){
+        if(j==100){seed1=double(rand());}
+    };
+    srand(seed1);
+    double output= ((double) rand()/RAND_MAX)*(width + CentreHome_r*4)-CentreHome_r*2;
     
     return(output);
 };
@@ -153,12 +159,12 @@ void World::oneiteration(double cam_interval,
 
     buffer = fmax(CentreHome_r[0],CentreHome_r[1]);
 
-    double area = pow(buffer*2 + cam_interval*(sqrt(NoSensors)-1),2);
+    double area = pow(buffer*4 + cam_interval*(sqrt(NoSensors)-1),2);
     double density = NoAnimal/area;
     Settings << NoAnimal << "," << NoSteps <<"," <<Iteration << "," << nomales <<"," << area <<","<< density << "\n";
     //run animals
     for(int i=0; i<NoAnimal; i++){
-        
+        std::cout<<"Animal: " << i << "/"<< NoAnimal <<std::endl;
         srand(seed);
         for(int k=0; k<NoAnimal;k++){temp=double(rand());}
         seed1=double(rand());
@@ -247,7 +253,7 @@ void World::MultipleIterations(int NoSensors, int NoInterations, std::string sav
         "," << "density" <<
     "\n";
     
-    double area = pow(cam_interval*(sqrt(NoSensors)-1)+2*fmax(CentreHome_r[0],CentreHome_r[1]),2);
+    double area = pow(cam_interval*(sqrt(NoSensors)-1)+4*fmax(CentreHome_r[0],CentreHome_r[1]),2);
     std::cout<<cam_interval<<  " " <<NoSensors<<  " " <<CentreHome_r[0]<<  " " <<CentreHome_r[1]<<std::endl;
     double NoAnimals = ceil(Animaldensity*area);
     std::cout<< "NoAnimals_" <<  " " << NoAnimals <<" Animaldensity " << Animaldensity << " area "<<area <<std::endl;

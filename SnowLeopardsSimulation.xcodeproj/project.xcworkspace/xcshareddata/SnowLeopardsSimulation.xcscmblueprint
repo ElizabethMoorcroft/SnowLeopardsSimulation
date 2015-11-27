@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "82DE27B3C95C70B5571C0A6F3C8DD1E939B7D476",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "86F386F6CAF4DDAB88ED2A9212F23D9367A11E3E" : 0,
+    "82DE27B3C95C70B5571C0A6F3C8DD1E939B7D476" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "696ED9FA-B350-4D1B-98A4-A943ACDEB022",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "86F386F6CAF4DDAB88ED2A9212F23D9367A11E3E" : "Bats\/Test2",
+    "82DE27B3C95C70B5571C0A6F3C8DD1E939B7D476" : "SnowLeopardsSimulation"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SnowLeopardsSimulation",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SnowLeopardsSimulation.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ElizabethMoorcroft\/SnowLeopardsSimulation.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "82DE27B3C95C70B5571C0A6F3C8DD1E939B7D476"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ElizabethMoorcroft\/Test2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "86F386F6CAF4DDAB88ED2A9212F23D9367A11E3E"
+    }
+  ]
+}

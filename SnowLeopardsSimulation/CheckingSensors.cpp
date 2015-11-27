@@ -32,6 +32,7 @@ CheckingSensor::CheckingSensor(double currentx,double currenty, double currentan
         double x = AllSensors[sensor] -> get_x();double y = AllSensors[sensor] -> get_y();
         if(sqrt(pow(x-previousx,2)+pow(y-previousy,2))<15000 &&
            sqrt(pow(x-currentx,2)+pow(y-currenty,2))<15000){
+            //std::cout <<  " sensor "<< sensor << " stepcounter " << stepcounter <<" x "<< currentx <<" y "<< currenty<<std::endl;
         AllSensors[sensor] -> CapturesIntersection(currentx,currenty,
                                                    previousx,previousy,
                                                    id,currentangle,

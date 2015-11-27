@@ -18,14 +18,19 @@ int main(int argc, const char * argv[]) {
 
     World sc;
     //"TestReadIn.txt"
-    sc.runsimulation({"/Users/student/Documents/ForSim30Apr--SexF--MarkovTransitionsTRUE.txt","/Users/student/Documents/ForSim30Apr--SexM--MarkovTransitionsTRUE.txt"},
-                     (1*1), 1, "/Users/student/Documents/xx",
-                     500, {M_PI}, {200},
-                     432, //432
-                     1, //save move
-                     15000,
-                     0.000002,//10000,
-                     0.5);
+    sc.runsimulation({"/Users/student/Documents/changearea--SexF--add50.txt", //ForSim12Oct--SexM--AverageSpeed.txt
+                        "/Users/student/Documents/changearea--SexM--add50.txt"}, //ForSim30Apr--SexF--MarkovTransitionsFALSE.txt
+                     (100*100), 100, // number iterations
+                     "/Users/student/Documents/Sims/add50hr",
+                     1000, // distance between
+                     {M_PI}, // camera width
+                     {55}, // camera radius
+                     432, //432, 10512
+                     0, //save move
+                     30000,
+                     0.00000001,//10000,
+                     0.5 //percentage male
+                     );
     
     
     
